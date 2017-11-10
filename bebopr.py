@@ -22,21 +22,22 @@ def init_hardware():
     rt.loadrt('hal_bb_gpio', output_pins='807,808,810,819,828,840,841', input_pins='809,831,832,833,835,837,838')
     prubin = '%s/%s' % (c.Config().EMC2_RTLIB_DIR, c.find('PRUCONF', 'PRUBIN'))
     rt.loadrt(c.find('PRUCONF', 'DRIVER'),
-              pru=0, num_stepgens=4, num_pwmgens=3,
+              pru=1, num_stepgens=4, num_pwmgens=3,
               prucode=prubin, halname='hpg')
 
     # Python user-mode HAL module to read ADC value and generate a thermostat output for PWM
     defaultThermistor = 'semitec_103GT_2'
     hal.loadusr('hal_temp_bbb',
                 name='temp',
-                interval=0.05,
-                filter_size=1,
-                cape_board='BeBoPr',
-                channels='01:%s,03:%s'
+                interval=0.10,
+                filter_size=5,
+                cape_board='CRAMPS',
+		r_pu=2185, # measured value of my 2.2k pullup resistor
+                channels='04:%s,05:%s'
                 % (c.find('HBP', 'THERMISTOR', defaultThermistor),
                    c.find('EXTRUDER_0', 'THERMISTOR', defaultThermistor)),
                 wait_name='temp')
-    watchList.append(['temp', 0.1])
+    watchList.append(['temp', 0.2])
 
     base.usrcomp_status('temp', 'temp-hw', thread='servo-thread')
     base.usrcomp_watchdog(watchList, 'estop-reset', thread='servo-thread',
