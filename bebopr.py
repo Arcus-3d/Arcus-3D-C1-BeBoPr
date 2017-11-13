@@ -48,8 +48,8 @@ def setup_hardware(thread):
     # PWM
     hal.Pin('hpg.pwmgen.00.pwm_period').set(100000000)  # 1000Hz
     hal.Pin('hpg.pwmgen.00.out.00.pin').set(836)  # J4 HBP
-    hal.Pin('hpg.pwmgen.00.out.01.pin').set(846)  # J2 E0
-    hal.Pin('hpg.pwmgen.00.out.02.pin').set(845)  # J3 F0
+    hal.Pin('hpg.pwmgen.00.out.01.pin').set(845)  # J2 E0
+    hal.Pin('hpg.pwmgen.00.out.02.pin').set(846)  # J3 F0
     # HBP
     hal.Pin('hpg.pwmgen.00.out.00.enable').set(True)
     hal.Pin('hpg.pwmgen.00.out.00.value').link('hbp-temp-pwm')
@@ -74,24 +74,24 @@ def setup_hardware(thread):
 
     # GPIO
     hal.Pin('bb_gpio.p8.in-31').link('limit-0-home')   # X
-    hal.Pin('bb_gpio.p8.in-32').link('limit-0-max')    # X
+    #hal.Pin('bb_gpio.p8.in-31').link('limit-0-max')    # X
     hal.Pin('bb_gpio.p8.in-35').link('limit-1-home')   # Y
-    hal.Pin('bb_gpio.p8.in-33').link('limit-1-max')    # Y
+    #hal.Pin('bb_gpio.p8.in-35').link('limit-1-max')    # Y
     hal.Pin('bb_gpio.p8.in-38').link('limit-2-home')   # Z
-    hal.Pin('bb_gpio.p8.in-37').link('limit-2-max')    # Z
+    #hal.Pin('bb_gpio.p8.in-38').link('limit-2-max')    # Z
     # probe ...
 
     # Adjust as needed for your switch polarity
     hal.Pin('bb_gpio.p8.in-31.invert').set(False)
-    hal.Pin('bb_gpio.p8.in-32.invert').set(False)
+    #hal.Pin('bb_gpio.p8.in-32.invert').set(False)
     hal.Pin('bb_gpio.p8.in-35.invert').set(False)
-    hal.Pin('bb_gpio.p8.in-33.invert').set(False)
+    #hal.Pin('bb_gpio.p8.in-33.invert').set(False)
     hal.Pin('bb_gpio.p8.in-38.invert').set(False)
-    hal.Pin('bb_gpio.p8.in-37.invert').set(False)
+    #hal.Pin('bb_gpio.p8.in-37.invert').set(False)
 
     # ADC
-    hal.Pin('temp.ch-01.value').link('hbp-temp-meas')
-    hal.Pin('temp.ch-03.value').link('e0-temp-meas')
+    hal.Pin('temp.ch-05.value').link('hbp-temp-meas')
+    hal.Pin('temp.ch-04.value').link('e0-temp-meas')
     #hal.Pin('temp.ch-05.value').link('e1-temp-meas')
 
     # Stepper

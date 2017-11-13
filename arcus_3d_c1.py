@@ -15,10 +15,10 @@ rt.init_RTAPI()
 # loads the ini file passed by linuxcnc
 c.load_ini(os.environ['INI_FILE_NAME'])
 
-motion.setup_motion(kinematics='tripodkins')
-hal.Pin('tripodkins.Bx').set(c.find('MACHINE', 'TRIPOD_BX'))
-hal.Pin('tripodkins.Cx').set(c.find('MACHINE', 'TRIPOD_CX'))
-hal.Pin('tripodkins.Cy').set(c.find('MACHINE', 'TRIPOD_CY'))
+motion.setup_motion(kinematics='itripodkins')
+hal.Pin('itripodkins.Bx').set(c.find('MACHINE', 'TRIPOD_BX'))
+hal.Pin('itripodkins.Cx').set(c.find('MACHINE', 'TRIPOD_CX'))
+hal.Pin('itripodkins.Cy').set(c.find('MACHINE', 'TRIPOD_CY'))
 
 hardware.init_hardware()
 storage.init_storage('storage.ini')
